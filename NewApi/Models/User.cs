@@ -10,4 +10,5 @@ public class User
 
     public ICollection<Post> Posts { get; set; } = new List<Post>();
     public ICollection<PostReaction> Reactions { get; set; } = new List<PostReaction>();
+    public ICollection<Comment> Comments { get; set; } = new List<Comment>();
 }
