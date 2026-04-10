@@ -9,7 +9,7 @@ namespace ForumApi.Controllers;
 public class UserController : ControllerBase
 {
     private readonly AppDbContext _db;
-
+    // blabla 
     public UserController(AppDbContext db) => _db = db;
 
     [HttpGet]
