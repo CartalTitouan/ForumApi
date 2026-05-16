@@ -18,6 +18,7 @@ public class PostController : ControllerBase
     public PostController(AppDbContext db) => _db = db;
 
     private int GetUserId() => int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+    private bool IsAdmin() => bool.Parse(User.FindFirst("IsAdmin")?.Value ?? "false");
 
     [HttpGet]
     [AllowAnonymous]
@@ -71,6 +72,9 @@ public class PostController : ControllerBase
         var post = await _db.Posts.FindAsync(id);
         if (post == null)
             return NotFound("Poste introuvable.");
+
+        if (!IsAdmin() && post.UserId != GetUserId())
+            return Forbid();
 
         _db.Posts.Remove(post);
         await _db.SaveChangesAsync();

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forum</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- AUTH VIEW -->
+  <div id="view-auth" class="view">
+    <div class="auth-container">
+      <h1 class="auth-logo">Forum</h1>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Connexion</button>
+        <button class="tab" data-tab="register">Inscription</button>
+      </div>
+
+      <form id="form-login" class="auth-form">
+        <input type="email" id="login-email" placeholder="Email" required />
+        <input type="password" id="login-password" placeholder="Mot de passe" required />
+        <p id="login-error" class="form-error"></p>
+        <button type="submit">Se connecter</button>
+      </form>
+
+      <form id="form-register" class="auth-form hidden">
+        <input type="text" id="register-username" placeholder="Nom d'utilisateur" required />
+        <input type="email" id="register-email" placeholder="Email" required />
+        <input type="password" id="register-password" placeholder="Mot de passe" required />
+        <p id="register-error" class="form-error"></p>
+        <button type="submit">S'inscrire</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- POSTS VIEW -->
+  <div id="view-posts" class="view hidden">
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="app-name">Forum</span>
+        <button class="admin-btn hidden" id="btn-admin">⚙ Admin</button>
+      </div>
+      <div class="user-menu">
+        <div class="user-trigger" id="user-trigger">
+          <img src="avatar.svg" class="avatar" alt="avatar" />
+          <span id="user-display-name"></span>
+        </div>
+        <div class="user-dropdown hidden" id="user-dropdown">
+          <button id="btn-logout">Déconnexion</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="posts-list" id="posts-list">
+      <div class="loading">Chargement...</div>
+    </main>
+
+    <button class="fab" id="btn-create">+ Créer</button>
+  </div>
+
+  <!-- ADMIN VIEW -->
+  <div id="view-admin" class="view hidden">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="back-btn" id="btn-admin-back">&#8592; Retour</button>
+        <span class="app-name">Administration</span>
+      </div>
+      <div></div>
+    </header>
+
+    <main class="admin-container">
+      <input type="text" id="user-search" placeholder="Rechercher un utilisateur..." />
+      <div class="users-list" id="users-list">
+        <div class="loading">Chargement...</div>
+      </div>
+    </main>
+  </div>
+
+  <!-- USER DETAIL MODAL -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- CREATE POST VIEW -->
+  <div id="view-create" class="view hidden">
+    <header class="topbar">
+      <button class="back-btn" id="btn-back">&#8592; Retour</button>
+      <span class="app-name">Nouveau post</span>
+      <div></div>
+    </header>
+
+    <main class="create-container">
+      <form id="form-create">
+        <input type="text" id="post-title" placeholder="Titre" required />
+        <textarea id="post-content" placeholder="Contenu du post..." required></textarea>
+        <p id="create-error" class="form-error"></p>
+        <button type="submit">Publier</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

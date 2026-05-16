@@ -49,7 +49,7 @@ public class AuthController : ControllerBase
             return Unauthorized("Identifiants invalides.");
 
         var token = GenerateToken(user);
-        return Ok(new AuthResponse(token, user.Username));
+        return Ok(new AuthResponse(token, user.Username, user.IsAdmin));
     }
 
     private string GenerateToken(User user)
@@ -59,7 +59,8 @@ public class AuthController : ControllerBase
         var claims = new[]
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Username)
+            new Claim(ClaimTypes.Name, user.Username),
+            new Claim("IsAdmin", user.IsAdmin.ToString())
         };
 
         var token = new JwtSecurityToken(
